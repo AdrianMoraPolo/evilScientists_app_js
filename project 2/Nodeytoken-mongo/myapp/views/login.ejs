@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+    <title>Login Page</title>
+
+    <!--Bootsrap 4 CDN-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+
+    <!--Fontawesome CDN-->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Staatliches&display=swap"
+      rel="stylesheet"
+    />
+    <script src="/javascripts/lib/jquery-3.4.1.min.js"></script>
+    <script src="/javascripts/eventos.js"></script>
+  </head>
+
+  <body>
+    <!--NAVBAR -->
+    <div class="container-fluid navbarito">
+      <nav class="navbar navbar-expand-lg navbar-light barra">
+        <!-- <img class="logo" src="../img/brochazo.png" /> -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">INICIO</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">CÓDIGO</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                NORMAS
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#tatoine">Tatooine</a>
+                <a class="dropdown-item" href="#">Esto y lo otro</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Cosa</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">NUESTROS CIENTIFICOS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" a href="" rel="next" target="_blank"
+                >EXPERIMENTOS</a
+              >
+            </li>
+          </ul>
+          <a
+                class="nav-link pointer"
+                class="btn"
+                data-toggle="modal"
+                data-target="#exampleModal"
+              >
+                LOGIN</a
+              >
+
+              <!-- Modal -->
+              <div
+                class="modal fade registrocajeta"
+                id="exampleModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="conta">
+                      <div class="d-flex justify-content-center h-100">
+                        <div class="card tarheta">
+                          <div class="card-header">
+                            <h3>Sign In</h3>
+                            <div class="d-flex justify-content-end social_icon">
+                              <span
+                                ><i class="fab fa-facebook-square"></i
+                              ></span>
+                              <span
+                                ><i class="fab fa-google-plus-square"></i
+                              ></span>
+                              <span><i class="fab fa-twitter-square"></i></span>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="input-group form-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"
+                                  ><i class="fas fa-user"></i
+                                ></span>
+                              </div>
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Usuario"
+                                name="username"
+                                id="username"
+                              />
+                            </div>
+                            <div class="input-group form-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"
+                                  ><i class="fas fa-key"></i
+                                ></span>
+                              </div>
+                              <input
+                                type="password"
+                                class="form-control"
+                                placeholder="Contraseña"
+                                name="password"
+                                id="password"
+                              />
+                            </div>
+                            <div class="row align-items-center remember">
+                              <input type="checkbox" />Recordar
+                            </div>
+                            <div class="form-group">
+                              <span id="token"></span>
+                              <button
+                                onclick="getToken()"
+                                class="btn btn-secondary float-right login"
+                              >
+                                Login
+                              </button>
+                              <span id="token"></span>
+                            </div>
+                          </div>
+                          <div class="card-footer">
+                            <div
+                              class="d-flex justify-content-center links notienes"
+                            >
+                              ¿No tienes cuenta?<a
+                                class="registro"
+                                href="http://localhost:3000/create"
+                                >Registrarte</a
+                              >
+                            </div>
+                            <div class="d-flex justify-content-center">
+                              <a class="registro" href="#"
+                                >¿Olvidaste tu contaseña?</a
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="puerta">
+        <img src="/images/puerta.png" alt="door" class="door">
+    </div>
+    <!-- <div class="topnav">
+      <div class="container">
+        <h4>Usuario</h4>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Username"
+          name="username"
+          id="username"
+        /><br />
+        <h4>Contraseña</h4>
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Password"
+          name="password"
+          id="password"
+        /><br />
+        <button onclick="getToken()" class="btn btn-success">Login</button>
+        <span id="token"></span>
+        <a href="http://localhost:3000/create" class="btn btn-info"
+          >Crear Usuario</a
+        >
+      </div>
+    </div> -->
+    
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+
+  <script>
+
+
+    function getToken() {
+      const usernameValue = document.getElementById("username").value;
+      const passwordValue = document.getElementById("password").value;
+
+      fetch("api/auth", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          username: usernameValue,
+          password: passwordValue
+        })
+      }).then(response => {
+        if (response.ok) {
+          response.text().then(text => {
+            console.log(response);
+            localStorage.setItem("token", text);
+            location.href = "/users";
+          });
+        }
+      });
+    }
+  </script>
+</html>

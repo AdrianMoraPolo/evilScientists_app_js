@@ -1,0 +1,260 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-position-y: 4%;
+}
+
+a {
+  color: #00b7ff;
+}
+
+/* LOGIN EJS */
+.navbarito{
+  margin-top: -2% !important;
+}
+.nav-link {
+  color: #09c384 !important;
+  /* font-weight: bold; */
+  font-family: "Staatliches", cursive;
+  font-size: 1.5rem;
+  
+}
+.nav-link:hover {
+  color: rgb(90, 238, 189) !important;
+}
+.container-fluid {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+
+/* Tarjeta del Login*/
+@import url("https://fonts.googleapis.com/css?family=Numans");
+
+.scroll {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.u6pdatebody {
+  background-image: url("/images/updateyellow.jpg");
+  background-position-y: 80%;
+  background-position-x: 50%;
+  height: 110vh;
+  width: 98vw;
+  margin-top: 5% !important;
+}
+
+.updatebody {
+  background-image: url("/images/updateyellow2.jpg");
+  background-position-y: 320%;
+  background-position-x: 50%;
+  height: 110vh;
+  width: 98vw;
+  overflow: hidden;
+  margin-top: 5% !important;
+}
+body {
+  background-image: url("/images/1214490000.jpg");
+ 
+  background-repeat: no-repeat;
+
+  font-family: "Numans", sans-serif;
+}
+div.card-header {
+  background-color: rgb(72, 74, 75);
+}
+div.card-body {
+  background-color: rgb(72, 74, 75);
+}
+div.card-footer {
+  background-color: rgb(72, 74, 75);
+}
+.conta {
+  height: 100%;
+  align-content: center;
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+
+.tarheta {
+  height: 370px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 400px;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.social_icon span {
+  font-size: 60px;
+  margin-left: 10px;
+  color: #09c384;
+}
+
+.social_icon span:hover {
+  color: rgb(36, 221, 159);
+  cursor: pointer;
+}
+
+.card-header h3 {
+  color: white;
+}
+
+.social_icon {
+  position: absolute;
+  right: 20px;
+  top: -45px;
+}
+
+.input-group-prepend span {
+  width: 50px;
+  background-color: #09c384;
+  color: black;
+  border: 0 !important;
+}
+
+input:focus {
+  outline: 0 0 0 0 !important;
+  box-shadow: 0 0 0 0 !important;
+}
+
+.remember {
+  color: white;
+}
+
+.remember input {
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+.login {
+  color: rgb(255, 255, 255) !important;
+  background-color: #09c384 !important;
+  border-color: 1px solid #09c384 !important;
+  width: 100px;
+}
+
+.login:hover {
+  
+  background-color: rgb(12, 143, 88) !important;
+}
+
+.links {
+  color: white;
+}
+
+.links a {
+  margin-left: 4px;
+}
+.modal-content {
+  width: 20vw !important;
+}
+.pointer {
+  cursor: pointer;
+}
+
+.notienes {
+  color: rgb(44, 43, 43);
+  font-weight: bold;
+}
+.registro {
+  color: white;
+  font-weight: normal;
+}
+.registrocajeta {
+  z-index: 39009900909090909000 !important;
+  margin-top: 10vh;
+}
+
+/* FIN Tarjeta del Login*/
+
+.shadow {
+  margin-left: 32.5%;
+  margin-top: 5%;
+  position: absolute;
+  z-index: 2;
+  display: none;
+}
+.shadow:hover {
+  margin-left: 32.5%;
+  margin-top: 5%;
+  position: absolute;
+  z-index: 2;
+  display: block;
+  background-repeat: no-repeat;
+}
+
+.door {
+  margin-left: 26.4%;
+  margin-top: -1.5%;
+  -webkit-transition: -webkit-transform 0.8s ease-in-out;
+  transition: transform 0.8s ease-in-out;
+
+  z-index: 3;
+}
+.door:hover {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+  /* background-image: url(/images/fondoshine.jpg); */
+  background-repeat: no-repeat;
+  margin-left: 26.4%;
+  margin-top: -1.5%;
+}
+
+/* USER EJS */
+table {
+  color: white;
+  font-family: "Numans", sans-serif;
+  margin-left: 10% !important;
+  
+  margin:8%;
+  margin-left:20% !important;
+  
+}
+.userino{
+  background-color: rgba(49, 49, 49, 0.1);
+}
+.emailtable{
+  margin-left: 10% !important;
+}
+.addito{
+  margin-left: 5%!important;
+}
+
+th {
+
+  color: #09c384;
+
+}
+th,
+td {
+ margin: 2% !important;
+ padding: 5%;
+ padding-left:10%;
+}
+.useri{
+  margin-left: 4% !important;
+}
+.gray {
+  background-color: rgba(49, 49, 49, 0.767);
+}
+.dark {
+  background-color: rgba(29, 29, 29, 0.767);
+}
+
+.putoinicio{
+  margin-top: -5%;
+  cursor: pointer;
+}
+/* UPDATE EJS */
+h3 {
+  padding-top: 10%;
+}
+h4 {
+  padding-top: 5%;
+}
+
+/* DESIGN EJS */
+.updatedesign{
+  color: white;
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title><%= title %></title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="/javascripts/jwt-decode.min.js"></script>
+  </head>
+
+  <body class="updatebody">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-4">
+          <h3>Registro de prototipo</h3>
+          <hr />
+          <div class="form-group">
+            <h4>Proyect</h4>
+            <input
+              type="text"
+              id="proyect"
+              placeholder="Proyect"
+              class="form-control"
+            />
+            <h4>Name</h4>
+            <input
+              type="text"
+              id="designname"
+              placeholder="Name"
+              class="form-control"
+            />
+            <h4>Version</h4>
+            <input
+              type="text"
+              id="version"
+              placeholder="Version of design"
+              class="form-control"
+            />
+          </div>
+          <br />
+          <br />
+          <br />
+          <input
+            type="button"
+            class="btn btn-info"
+            value="Crear"
+            onclick="register()"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function register() {
+        const token = localStorage.getItem("token");
+        const proyect = document.getElementById("proyect").value;
+        const designname = document.getElementById("designname").value;
+        const version = document.getElementById("version").value;
+
+        const decoded = jwt_decode(token);
+        console.log(proyect);
+
+        fetch("/api/designs", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token
+          },
+          body: JSON.stringify({
+            user: decoded._id,
+            proyect: proyect,
+            designname: designname,
+            version: version
+          })
+        }).then(response => {
+          if (response.ok) {
+            location.href = "/users";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

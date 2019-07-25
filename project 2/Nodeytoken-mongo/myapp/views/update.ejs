@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Update</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body class="updatebody">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-4">
+          <h3>Registro de usuario</h3>
+          <hr />
+          <div class="form-group">
+            <h4>Username</h4>
+            <input
+              type="text"
+              id="username"
+              placeholder="Usuario"
+              class="form-control"
+            />
+            <h4>Email</h4>
+            <input
+              type="text"
+              id="email"
+              placeholder="Email"
+              class="form-control"
+            />
+            <h4>Password</h4>
+            <input
+              type="password"
+              id="password"
+              placeholder="Contraseña"
+              class="form-control"
+            />
+            <h4>Admin</h4>
+            <input
+              type="checkbox"
+              id="isAdmin"
+              placeholder="Tipo usuario"
+              class="form-control"
+            />
+          </div>
+          <input
+            type="button"
+            class="btn btn-danger"
+            value="Actualizar"
+            onclick="update()"
+          />
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const token = localStorage.getItem("token"); 
+    const id = location.pathname.split(["/"]).slice(-1)[0];
+
+    fetch("/api/users/" + id, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token
+      }
+    }).then(response => {
+      if (response.ok) {
+        response.json().then(user => {
+          document.getElementById("username").value = user.username;
+          document.getElementById("email").value = user.email;
+          document.getElementById("isAdmin").checked = user.isAdmin;
+        });
+      }
+    });
+    // HACER UNA PETICIÓN AL SERVIDOR PARA PEDIR DATOS DEL USUARIO CON ESA ID
+    // Y RELLENAR LOS CAMPOS
+    function update() {
+      const token = localStorage.getItem("token");
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const email = document.getElementById("email").value;
+      const isAdmin = document.getElementById("isAdmin").checked;
+      const id = location.pathname.split(["/"]).slice(-1)[0];
+
+      fetch("/api/users/" + id, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+          email: email,
+          isAdmin: isAdmin
+        })
+      }).then(response => {
+        if (response.ok) {
+          location.href = "/users";
+        }
+      });
+    }
+  </script>
+</html>

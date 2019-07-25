@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Welcome</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="/javascripts/jwt-decode.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container userino">
+      <table id="table">
+        <tr id="listaHeader">
+          <!-- <th>USERNAME</th> -->
+          <!-- <th>EMAIL</th>
+          <th>ADMIN</th>
+          <th></th> -->
+          <!-- <th></th>
+          <th></th> -->
+        </tr>
+        <tbody id="listaBody"></tbody>
+      </table>
+
+      <span id="errorMessage"></span>
+      <br />
+      <a href="http://localhost:3000/login" class="btn btn-primary putoinicio"
+        >LOG OUT</a
+      >
+      <span id="add"></span>
+    </div>
+  </body>
+
+  <script>
+    const token = localStorage.getItem("token");
+    console.log(token);
+    let decoded = jwt_decode(token);
+    console.log(decoded);
+    if (!decoded) {
+      location.href = "/login";
+    } else if (!decoded.isAdmin) {
+      fetch("api/designs", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token
+        }
+      }).then(response => {
+        if (response.ok) {
+          response.json().then(json => {
+            console.log("algo");
+            if (!decoded.isAdmin) {
+              const lista = document.getElementById("listaHeader");
+              const add = document.getElementById("add");
+
+              const th = document.createElement("th");
+              th.innerText = "PROYECT";
+              lista.appendChild(th);
+
+              const th1 = document.createElement("th");
+              th1.innerText = "DESIGN";
+              lista.appendChild(th1);
+
+              const th2 = document.createElement("th");
+              th2.innerText = "VERSION  ";
+              lista.appendChild(th2);
+
+              const a3 = document.createElement("a");
+              add.appendChild(a3);
+              a3.innerText = "ADD";
+              a3.className = "btn btn-secondary login addito putoinicio";
+              a3.onclick = () => {
+                location.href = "/createdesign/";
+              };
+            }
+
+            json.map(design => {
+              console.log("algo1");
+              const tr = document.createElement("tr");
+              document.getElementById("table").appendChild(tr);
+
+              if (!decoded.isAdmin) {
+                const td1 = document.createElement("td");
+                tr.appendChild(td1);
+                td1.innerText = design.proyect;
+
+                const td2 = document.createElement("td");
+                tr.appendChild(td2);
+                td2.innerText = design.designname;
+
+                const td3 = document.createElement("td");
+                tr.appendChild(td3);
+                td3.innerText = design.version;
+              }
+
+              if (decoded._id == design.user) {
+                const td4 = document.createElement("td");
+                tr.appendChild(td4);
+                const btn1 = document.createElement("button");
+                btn1.innerText = "Edit";
+                btn1.className = "btn btn-secondary login useri";
+                btn1.onclick = () => {
+                  location.href = "/design/" + design._id;
+                };
+                td4.appendChild(btn1);
+              }
+              if (decoded._id == design.user) {
+                const td5 = document.createElement("td");
+                tr.appendChild(td5);
+                const btn2 = document.createElement("button");
+                btn2.innerText = "Delete";
+                btn2.className = "btn btn-secondary login useri";
+                btn2.onclick = () => {
+                  const token = localStorage.getItem("token");
+                  fetch("api/designs/" + design._id, {
+                    method: "DELETE",
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: "Bearer " + token
+                    }
+                  }).then(() => {
+                    location.href = "/users";
+                  });
+                };
+                td5.appendChild(btn2);
+              }
+            });
+          });
+        }
+      });
+    } else {
+      fetch("api/users", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token
+        }
+      }).then(response => {
+        if (response.ok) {
+          response.json().then(json => {
+            console.log("algo");
+            if (decoded.isAdmin) {
+              const lista = document.getElementById("listaHeader");
+
+              const th2 = document.createElement("th");
+              th2.innerText = "USER";
+              lista.appendChild(th2);
+
+              const th = document.createElement("th");
+              th.innerText = "EMAIL";
+              th.className = "emailtable";
+              lista.appendChild(th);
+
+              const th1 = document.createElement("th");
+              th1.innerText = "ADMIN";
+              lista.appendChild(th1);
+            } else if (!decoded.isAdmin) {
+              const lista = document.getElementById("listaHeader");
+
+              const th = document.createElement("th");
+              th.innerText = "PROYECT";
+              lista.appendChild(th);
+
+              const th1 = document.createElement("th");
+              th1.innerText = "DESIGN";
+              lista.appendChild(th1);
+
+              const th2 = document.createElement("th");
+              th2.innerText = "VERSION";
+              lista.appendChild(th2);
+            }
+
+            json.map(user => {
+              console.log("algo1");
+              const tr = document.createElement("tr");
+              document.getElementById("table").appendChild(tr);
+
+              if (decoded.isAdmin) {
+                const td1 = document.createElement("td");
+                tr.appendChild(td1);
+                td1.innerText = user.username;
+
+                const td2 = document.createElement("td");
+                tr.appendChild(td2);
+                td2.innerText = user.email;
+
+                const td3 = document.createElement("td");
+                tr.appendChild(td3);
+                td3.innerText = user.isAdmin;
+              } else if (!decoded.isAdmin) {
+                const td1 = document.createElement("td");
+                tr.appendChild(td1);
+                td1.innerText = user.proyect;
+
+                const td2 = document.createElement("td");
+                tr.appendChild(td2);
+                td2.innerText = user.designname;
+
+                const td3 = document.createElement("td");
+                tr.appendChild(td3);
+                td3.innerText = user.version;
+              }
+
+              if (decoded.isAdmin || decoded._id == user._id) {
+                const td4 = document.createElement("td");
+                tr.appendChild(td4);
+                const btn1 = document.createElement("button");
+                btn1.innerText = "Edit";
+                btn1.className = "btn btn-secondary login useri";
+                btn1.onclick = () => {
+                  location.href = "/update/" + user._id;
+                };
+                td4.appendChild(btn1);
+              }
+              if (decoded.isAdmin) {
+                const td5 = document.createElement("td");
+                tr.appendChild(td5);
+                const btn2 = document.createElement("button");
+                btn2.innerText = "Delete";
+                btn2.className = "btn btn-secondary login useri";
+                btn2.onclick = () => {
+                  const token = localStorage.getItem("token");
+                  fetch("api/users/" + user._id, {
+                    method: "DELETE",
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: "Bearer " + token
+                    }
+                  }).then(() => {
+                    location.href = "/users";
+                  });
+                };
+                td5.appendChild(btn2);
+              }
+            });
+            //hemos habilitado en el back y en el front es decir en api y en users, primero
+            //  para que sea admin o no lo deje pasar, y luego en users para que muestre o no lo
+            //  que queremos depende de si es admin o no
+          });
+        }
+      });
+    }
+  </script>
+</html>

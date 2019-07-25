@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title><%= title %></title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body class="updatebody">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-4">
+          <h3>Registro de usuario</h3>
+          <hr />
+          <div class="form-group">
+            <h4>Username</h4>
+            <input
+              type="text"
+              id="username"
+              placeholder="Usuario"
+              class="form-control"
+            />
+            <h4>Email</h4>
+            <input
+              type="text"
+              id="email"
+              placeholder="Email"
+              class="form-control"
+            />
+            <h4>Password</h4>
+            <input
+              type="password"
+              id="password"
+              placeholder="Contraseña"
+              class="form-control"
+            />
+            
+          </div>
+          <br/>
+          <br/>
+          <br/>
+          <input
+            type="button"
+            class="btn btn-info"
+            value="Crear"
+            onclick="register()"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function register() {
+        const token = localStorage.getItem("token");
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const email = document.getElementById("email").value;
+        
+        const id = location.pathname.split(["/"]).slice(-1)[0];
+
+        fetch("/api/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token
+          },
+          body: JSON.stringify({
+            username: username,
+            password: password,
+            email: email,
+            isAdmin: false
+          })
+        }).then(response => {
+          if (response.ok) {
+            location.href = "/login";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

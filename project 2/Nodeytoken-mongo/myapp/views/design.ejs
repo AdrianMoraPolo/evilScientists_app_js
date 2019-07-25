@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title><%= title %></title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-4 updatedesign">
+          <br />
+          <br />
+          <h3>Actualización de Diseño</h3>
+          <hr />
+          <br />
+          <br />
+
+          <div class="form-group">
+            <h4>Proyect</h4>
+
+            <input
+              type="text"
+              id="proyect"
+              placeholder="Proyect"
+              class="form-control"
+            />
+            <br />
+            <br />
+            <h4>Name</h4>
+            <input
+              type="text"
+              id="designname"
+              placeholder="Name"
+              class="form-control"
+            />
+            <br />
+            <br />
+            <h4>Version</h4>
+            <input
+              type="text"
+              id="version"
+              placeholder="Version of design"
+              class="form-control"
+            />
+          </div>
+          <br />
+          <br />
+          <br />
+          <input
+            type="button"
+            class="btn btn-info"
+            value="Actualizar"
+            onclick="update()"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const token = localStorage.getItem("token");
+      const id = location.pathname.split(["/"]).slice(-1)[0];
+
+      fetch("/api/designs/" + id, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token
+        }
+      }).then(response => {
+        if (response.ok) {
+          response.json().then(user => {
+            document.getElementById("proyect").value = user.proyect;
+            document.getElementById("designname").value = user.designname;
+            document.getElementById("version").value = user.version;
+          });
+        }
+      });
+      // HACER UNA PETICIÓN AL SERVIDOR PARA PEDIR DATOS DEL USUARIO CON ESA ID
+      // Y RELLENAR LOS CAMPOS
+      function update() {
+        const token = localStorage.getItem("token");
+        const proyect = document.getElementById("proyect").value;
+        const designname = document.getElementById("designname").value;
+        const version = document.getElementById("version").value;
+        const id = location.pathname.split(["/"]).slice(-1)[0];
+        console.log(proyect);
+
+        fetch("/api/designs/" + id, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token
+          },
+          body: JSON.stringify({
+            proyect: proyect,
+            designname: designname,
+            version: version
+          })
+        }).then(response => {
+          if (response.ok) {
+            location.href = "/users";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
